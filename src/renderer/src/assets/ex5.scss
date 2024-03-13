@@ -1,0 +1,69 @@
+.ex5 {
+    display: flex;
+    flex-direction: column;
+
+    gap: 3rem;
+
+    padding: 0;
+
+    .controls {
+        display: flex;
+        gap: 1rem;
+
+        width: 100%;
+
+        align-items: center;
+        justify-content: center;
+
+        button {
+            padding: 0.5rem 1rem;
+
+            border-radius: 0.5rem;
+
+            background-color: white;
+            border: 1px solid white;
+            color: black;
+
+            cursor: pointer;
+
+            transition: all 0.2s;
+
+            &:hover {
+                border-color: black;
+                background-color: black;
+                color: white;
+            }
+
+            &.active {
+                box-shadow: inset 0 0 0 2px hsl(0, 65%, 50%);
+            }
+        }
+    }
+
+    .img-container {
+        scroll-snap-type: x mandatory;
+        scroll-behavior: smooth;
+        position: relative;
+
+        width: 100%;
+        min-height: 100%;
+
+        display: flex;
+        overflow-x: auto;
+
+        img {
+            scroll-snap-type: x mandatory;
+            scroll-behavior: smooth;
+
+            scroll-snap-align: start;
+
+            width: 100%;
+            height: auto;
+        }
+
+        // hide scrollbar
+        &::-webkit-scrollbar {
+            display: none;
+        }
+    }
+}

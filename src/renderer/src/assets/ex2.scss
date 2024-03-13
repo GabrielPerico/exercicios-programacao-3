@@ -1,0 +1,63 @@
+.ex2 {
+    display: flex;
+    flex-direction: column;
+
+    gap: 3rem;
+
+    .grid {
+        display: grid;
+        grid-template-columns: 1fr 2fr;
+        gap: 1rem;
+
+        align-items: start;
+        place-items: start;
+
+        .evento {
+            grid-column: 1;
+
+            counter-increment: evento;
+
+            &::before {
+                content: counter(evento) ". ";
+            }
+        }
+
+        .descricao {
+            grid-column: 2;
+
+            &::before {
+                content: "( " attr(data-response) " ) ";
+            }
+        }
+
+        .descricao,
+        .evento {
+            transition: color 0.3s;
+            cursor: pointer;
+
+            &::after {
+                content: " 👈";
+                opacity: 0;
+
+                transition: opacity 0.3s;
+
+                user-select: none;
+                pointer-events: none;
+            }
+        }
+
+        $arrayRespostas: (1, 2, 3, 4, 5, 6, 7, 8);
+
+        @each $resposta in $arrayRespostas {
+            &:has([data-response="#{$resposta}"]:hover) {
+                :is(.evento, .descricao)[data-response="#{$resposta}"] {
+                    color: hsl(203, 62%, 54%);
+
+                    &::after {
+                        opacity: 1;
+                    }
+                }
+            }
+        }
+    }
+}
